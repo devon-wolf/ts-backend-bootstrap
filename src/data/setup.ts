@@ -1,7 +1,8 @@
 import { promises as fs } from 'fs';
 import path from 'path';
+import { Pool } from 'pg';
 
-export default (pool) => {
+export default (pool : Pool) => {
   return fs
     .readFile(
       path.join(
