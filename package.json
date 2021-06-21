@@ -2,14 +2,14 @@
   "name": "text-ed-api",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
-  "type": "module",
+  "main": "./dist/server.js",
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest --verbose --runInBand --testLocationInResults --setupFiles dotenv/config",
+    "test": "jest --verbose --runInBand --testLocationInResults --setupFiles dotenv/config",
     "test:watch": "npm run test -- --watch",
-    "start": "node -r dotenv/config server.js",
-    "start:watch": "nodemon -r dotenv/config server.js",
-    "setup-db": "node -r dotenv/config setup-db.js",
+    "build": "tsc",
+    "start": "node -r dotenv/config ./dist/server.js",
+    "start:watch": "concurrently \"tsc -w\" \"nodemon -r dotenv/config ./dist/server.js\"",
+    "setup-db": "node -r dotenv/config ./dist/setup-db.js",
     "setup-heroku": "heroku run npm run setup-db"
   },
   "jest": {
@@ -24,10 +24,11 @@
     "@types/jest": "^26.0.23",
     "@types/pg": "^8.6.0",
     "eslint": "^7.29.0",
+    "concurrently": "^6.2.0",
     "jest": "^27.0.4",
     "nodemon": "^2.0.7",
-    "prettier": "^2.3.1",
-    "supertest": "^6.1.3"
+    "supertest": "^6.1.3",
+    "typescript": "^4.3.2"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
