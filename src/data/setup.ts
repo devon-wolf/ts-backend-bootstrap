@@ -8,6 +8,7 @@ export default (pool : Pool) => {
       path.join(
         path.dirname(new URL(import.meta.url).pathname),
         '..',
+        '..',
         'sql',
         'setup.sql'
       ),
